@@ -27,8 +27,6 @@
 <body>
 <div id='jobseeker'>I am searching for a job/internship.</div>
 <div id='recruiter'>I am a recruiter.</div>
-<div id="login"></div>
-<div id="signup"></div>
 <script src="javascript/home.js"></script>
 </body>
 </html>

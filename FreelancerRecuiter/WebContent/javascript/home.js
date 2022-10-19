@@ -4,6 +4,15 @@ document.getElementById("recruiter").addEventListener('click', RecruiterLogin);
 let isCandidate=0;
 let isRecruiter=0;
 
+function home() {
+	var code=`<div id='jobseeker'>I am searching for a job/internship.</div>
+		<div id='recruiter'>I am a recruiter.</div>
+		<script src="javascript/home.js"></script>`;
+	document.querySelector("body").innerHTML=code;
+	document.getElementById("jobseeker").addEventListener('click', CandidateLogin);
+	document.getElementById("recruiter").addEventListener('click', RecruiterLogin);
+}
+
 function CandidateLogin() {
 	isCandidate=1;
 	isRecruiter=0;
@@ -106,7 +115,7 @@ function LoginForm() {
 			<input type="password" name="password">
 		</div>
 		<div class="form-element">
-			<input type="submit" value="Sign Up">
+			<input type="submit" value="Login">
 		</div>
 		</form>
 		</div>`;
@@ -148,16 +157,5 @@ function SignUpForm() {
 	let myForm = first.concat(word, last);
 	document.getElementById("content").innerHTML=myForm;
 	document.getElementById("login").addEventListener("click", LoginForm);
-}
-
-function home() {
-	var code=`<div id='jobseeker'>I am searching for a job/internship.</div>
-		<div id='recruiter'>I am a recruiter.</div>
-		<div id="login"></div>
-		<div id="signup"></div>
-		<script src="javascript/home.js"></script>`;
-	document.querySelector("body").innerHTML=code;
-	document.getElementById("jobseeker").addEventListener('click', CandidateLogin);
-	document.getElementById("recruiter").addEventListener('click', RecruiterLogin);
 }
 
