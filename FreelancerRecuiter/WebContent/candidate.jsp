@@ -68,7 +68,7 @@
 	<span id="login">Login</span> <span id="signup">Sign Up</span>
 	</div>
 	<div id="displayForm">
-		<form action="login.java" method="post" id="LoginForm">
+		<form action="CandidateLogin.java" method="post" id="LoginForm">
 			<div class="form-element">
 				<span>Username / Email</span><br>
 				<input type="text" name="username">
@@ -92,7 +92,7 @@
 document.getElementById("login").addEventListener("click", LoginForm);
 document.getElementById("signup").addEventListener("click", SignUpForm);
 function LoginForm() {
-	var myForm = `<form action="login.java" method="post" id="LoginForm">
+	var myForm = `<form action="CandidateLogin.java" method="post" id="LoginForm">
 				<div class="form-element">
 					<span>Username / Email</span><br>
 					<input type="text" name="username">

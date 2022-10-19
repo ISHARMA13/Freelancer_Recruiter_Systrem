@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-	.box {
+	#jobseeker, #recruiter {
 		border: 1px solid;
 		border-radius: 5px;
 		padding: 10px;
@@ -16,18 +19,16 @@
 		cursor: pointer;
 		text-align:center;
 	}
-	a {
-		text-decoration:none;
-		color:black;
-    	font-weight:bold;
-	}
-	a:hover {
+	#jobseeker:hover, #recruiter:hover {
 		text-decoration: underline;
 	}
 </style>
 </head>
 <body>
-<div class='box'><a href="candidate.jsp">I am searching for a job/internship.</a></div>
-<div class='box'><a href="recruiter.jsp">I am a recruiter.</a></div>
+<div id='jobseeker'>I am searching for a job/internship.</div>
+<div id='recruiter'>I am a recruiter.</div>
+<div id="login"></div>
+<div id="signup"></div>
+<script src="javascript/home.js"></script>
 </body>
 </html>
