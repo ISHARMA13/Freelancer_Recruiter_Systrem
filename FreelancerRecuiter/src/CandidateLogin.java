@@ -54,13 +54,13 @@ public class CandidateLogin extends HttpServlet {
 		//Getting a connection object
 		Connection con = null;
  		String url = "jdbc:mysql://localhost:3306/university"; //MySQL URL and followed by the database name
- 		String username = "universityDB0020"; //MySQL username
+ 		String username = "universityDB0051"; //MySQL username
  		String password = "New@45678"; //MySQL password
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(url, username, password); //attempting to connect to MySQL database
  		System.out.println("Printing connection object "+con);
- 		PreparedStatement st1 = con .prepareStatement("select * from users where userid=?;");
+ 		PreparedStatement st1 = con .prepareStatement("select * from student where ID=?;");
  		st1.setString(1,userid);
  		ResultSet rs=st1.executeQuery();
  		if(rs.next()) 

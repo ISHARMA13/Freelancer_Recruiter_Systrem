@@ -27,7 +27,7 @@ function CandidateLogin() {
 			<span id="login">Login</span> <span id="signup">Sign Up</span>
 			</div>
 			<div id="displayForm">
-				<form action="CandidateLogin.java" method="post" id="LoginForm">
+				<form action="CandidateLogin" method="post" id="LoginForm">
 					<div class="form-element">
 						<span>Username / Email</span><br>
 						<input type="text" name="username">
@@ -67,7 +67,7 @@ function RecruiterLogin() {
 			<span id="login">Login</span> <span id="signup">Sign Up</span>
 			</div>
 			<div id="displayForm">
-				<form action="RecuiterLogin.java" method="post" id="LoginForm">
+				<form action="RecuiterLogin" method="post" id="LoginForm">
 					<div class="form-element">
 						<span>Username / Email</span><br>
 						<input type="text" name="username">
@@ -105,7 +105,7 @@ function LoginForm() {
 			</div>
 			<div id="displayForm">
 				<form action="`;
-	var last = `Login.java" method="post" id="LoginForm">
+	var last = `Login" method="post" id="LoginForm">
 		<div class="form-element">
 			<span>Username / Email</span><br>
 			<input type="text" name="username">
@@ -137,7 +137,7 @@ function SignUpForm() {
 			</div>
 			<div id="displayForm">
 				<form action="`;
-	var last = `SignUp.java" method="post" id="LoginForm">
+	var last = `SignUp" method="post" id="LoginForm">
 		<div class="form-element">
 			<span>Email</span><br>
 			<input type="email" name="email">
