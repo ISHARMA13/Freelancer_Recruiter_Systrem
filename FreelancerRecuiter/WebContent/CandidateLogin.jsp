@@ -20,7 +20,7 @@
 	<span id="login">Login</span> <span id="signup">Sign Up</span>
 	</div>
 	<div id="displayForm">
-		<form action="CandidateLogin" method="post" id="LoginForm">
+		<form action="CandidateLoginServlet" method="post" id="LoginForm">
 			<div class="form-element">
 				<label for="emailid">Email:</label><br>
 				<input type="text" name="username" id="emailid">

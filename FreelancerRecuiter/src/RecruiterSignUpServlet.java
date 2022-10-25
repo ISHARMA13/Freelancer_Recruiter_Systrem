@@ -16,16 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class CandidateSignUp
+ * Servlet implementation class RecruiterSignUpServlet
  */
-@WebServlet("/CandidateSignUp")
-public class CandidateSignUp extends HttpServlet {
+@WebServlet("/RecruiterSignUpServlet")
+public class RecruiterSignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CandidateSignUp() {
+    public RecruiterSignUpServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -54,20 +54,20 @@ public class CandidateSignUp extends HttpServlet {
 			con = DriverManager.getConnection(url, username, pass); //attempting to connect to MySQL database
 	 		System.out.println("Printing connection object "+con);
 	 		
-	 		PreparedStatement st1 = con .prepareStatement("select Id from freelancers where Id=?;");
+	 		PreparedStatement st1 = con .prepareStatement("select Id from employer where Id=?;");
 	 		st1.setString(1, email);
 	 		ResultSet rs=st1.executeQuery();
 	 		
 	 		if(!rs.next()) {
 		 		if (confirmPassword.equals(password)) {
 		 			ses.setAttribute("email", email);
-		 			String query = "INSERT INTO freelancers (?,?)";
+		 			String query = "INSERT INTO employer (?,?)";
 		 			PreparedStatement stmt = con.prepareStatement(query);
 		 			stmt.setString(1, email);
 		 			stmt.setString(2, password);
 		 			int r=stmt.executeUpdate();
 		 			if(r > 0) {
-			 			RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
+			 			RequestDispatcher rd = request.getRequestDispatcher("RecruiterDetails.jsp");
 		 				rd.forward(request, response);
 		 			}
 		 		} 

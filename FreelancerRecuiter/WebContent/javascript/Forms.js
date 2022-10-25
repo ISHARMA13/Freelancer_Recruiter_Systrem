@@ -16,7 +16,7 @@ function LoginForm() {
 			</div>
 			<div id="displayForm">
 				<form action="`;
-	var last = `Login" method="post" id="LoginForm">
+	var last = `LoginServlet" method="post" id="LoginForm">
 		<div class="form-element">
 			<span>Email:</span><br>
 			<input type="text" name="username">
@@ -48,7 +48,7 @@ function SignUpForm() {
 			</div>
 			<div id="displayForm">
 				<form action="`;
-	var last = `SignUp" method="post" id="LoginForm">
+	var last = `SignUpServlet" method="post" id="LoginForm">
 		<div class="form-element">
 			<span>Email:</span><br>
 			<input type="email" name="email">

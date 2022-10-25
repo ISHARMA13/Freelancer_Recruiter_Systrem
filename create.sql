@@ -14,19 +14,24 @@ foreign key(Id) references freelancers(Id)
 );
 
 create table freedetails (Id varchar(20) primary key,
-name varchar(30) not null,
-photo_url varchar(100),
-phone_no varchar(25) not null, 
-address varchar(100),
+first_name varchar(30) not null,
+last_name varchar(30) not null,
+photo varchar(100),
+gender varchar(1) not null,
+work_phone varchar(25) not null, 
+street varchar(30),
+city varchar(15)not null,
+state varchar(15) not null,
+pincode varchar(6) not null,
 foreign key(Id) references freelancers(Id)
 );
 
 create table freeeducation (Id varchar(20),
-institute varchar(30) not null,
+university varchar(30) not null,
 degree varchar(10),
 year_start int not null, 
 year_end int,
-primary key(Id, institute, year_start),
+primary key(Id, university, year_start),
 foreign key(Id) references freelancers(Id)
 );
 
@@ -35,6 +40,7 @@ company varchar(30) not null,
 title varchar(10),
 start_date date not null, 
 end_date date,
+description varchar(300),
 primary key(Id, company, title, start_date)
 foreign key(Id) references freelancers(Id)
 );
