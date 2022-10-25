@@ -12,12 +12,13 @@
 	#jobseeker, #recruiter {
 		border: 1px solid;
 		border-radius: 5px;
-		padding: 10px;
+		padding: 20px;
 		box-shadow: 5px 10px lightgray;
 		width: 40%;
-		margin:100px auto;
+		margin: auto;
 		cursor: pointer;
 		text-align:center;
+		text-decoration:none;
 	}
 	#jobseeker:hover, #recruiter:hover {
 		text-decoration: underline;
@@ -25,8 +26,10 @@
 </style>
 </head>
 <body>
-<div id='jobseeker'>I am searching for a job/internship.</div>
-<div id='recruiter'>I am a recruiter.</div>
-<script src="javascript/home.js"></script>
+<a id='jobseeker' href="CandidateLogin.jsp">I am job seeker.</a>
+<a id='recruiter' href="RecruiterLogin.jsp">I am a recruiter.</a>
+<div id='login' style="margin:0;padding:0;"></div>
+<div id='signup' style="margin:0;padding:0;"></div>
+<script type="module" src="javascript/home.js"></script>
 </body>
 </html>

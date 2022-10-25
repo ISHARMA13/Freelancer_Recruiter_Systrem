@@ -1,6 +1,6 @@
 CREATE USER 'ishifree'@'localhost' IDENTIFIED BY 'Freelancer@9876'; 
-CREATE DATABASE 'ishifree';
-grant all permissions on 'ishifree' to 'freelancers'@'localhost';
+CREATE DATABASE ishifree;
+GRANT ALL PRIVILEGES ON trial.* TO 'ishifree'@'localhost';
 
 -- Freelancers
 

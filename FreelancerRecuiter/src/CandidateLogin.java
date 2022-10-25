@@ -53,14 +53,14 @@ public class CandidateLogin extends HttpServlet {
 		
 		//Getting a connection object
 		Connection con = null;
- 		String url = "jdbc:mysql://localhost:3306/university"; //MySQL URL and followed by the database name
- 		String username = "universityDB0051"; //MySQL username
- 		String password = "New@45678"; //MySQL password
+ 		String url = "jdbc:mysql://localhost:3306/trial"; //MySQL URL and followed by the database name
+ 		String username = "ishifree"; //MySQL username
+ 		String password = "Freelancer@9876"; //MySQL password
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(url, username, password); //attempting to connect to MySQL database
  		System.out.println("Printing connection object "+con);
- 		PreparedStatement st1 = con .prepareStatement("select * from student where ID=?;");
+ 		PreparedStatement st1 = con .prepareStatement("select * from freelancers where Id=?;");
  		st1.setString(1,userid);
  		ResultSet rs=st1.executeQuery();
  		if(rs.next()) 
@@ -68,7 +68,7 @@ public class CandidateLogin extends HttpServlet {
  			if(rs.getString("password").equals(userpassword)) 
 			{
  				ses.setAttribute("userid", userid);
- 				RequestDispatcher rd = request.getRequestDispatcher("Logged_in.jsp");
+ 				RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
  				rd.forward(request, response);
  			}
  			else 
@@ -87,13 +87,15 @@ public class CandidateLogin extends HttpServlet {
  		}
  		else 
 		{
+// 			RequestDispatcher rd = request.getRequestDispatcher("CandidateLogin.jsp");
+//			rd.forward(request, response);
  			response.setContentType("text/html");
  			PrintWriter out = response.getWriter();
  		      String docType =
  		         "<!doctype html>\n";
  		      out.println(docType +
  		         "<html><head><title>Error </title></head>"+
-				 "<body><h1>Login Filed - Invalid User</h1></body></html>"
+				 "<body><h1>Login Failed - Invalid User</h1></body></html>"
  		      );
  		}
 	
