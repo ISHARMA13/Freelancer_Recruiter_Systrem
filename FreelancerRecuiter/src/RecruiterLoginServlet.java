@@ -46,7 +46,7 @@ public class RecruiterLoginServlet extends HttpServlet {
 			
 			//Getting a connection object
 			Connection con = null;
-	 		String url = "jdbc:mysql://localhost:3306/trial"; //MySQL URL and followed by the database name
+	 		String url = "jdbc:mysql://localhost:3306/ishifree"; //MySQL URL and followed by the database name
 	 		String username = "ishifree"; //MySQL username
 	 		String password = "Freelancer@9876"; //MySQL password
 			

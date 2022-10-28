@@ -1,5 +1,6 @@
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  * Servlet implementation class CandidateLoginServlet
@@ -39,14 +42,27 @@ public class CandidateLoginServlet extends HttpServlet {
 		{
 			//Setting a session variable
 			HttpSession ses = request.getSession();  
-	
+			
 			//getting input values from jsp page
 			String userid = request.getParameter("username");
+		
 			String userpassword = request.getParameter("password");
+			System.out.println(userid);
+			System.out.println(userpassword);
+			
+			StringBuffer jb = new StringBuffer();
+			  String line = null;
+			  try {
+			    BufferedReader reader = request.getReader();
+			    while ((line = reader.readLine()) != null)
+			      jb.append(line);
+			  } catch (Exception e) { /*report an error*/ }
+			  System.out.println(jb);
 			
 			//Getting a connection object
+			 
 			Connection con = null;
-	 		String url = "jdbc:mysql://localhost:3306/trial"; //MySQL URL and followed by the database name
+	 		String url = "jdbc:mysql://localhost:3306/ishifree"; //MySQL URL and followed by the database name
 	 		String username = "ishifree"; //MySQL username
 	 		String password = "Freelancer@9876"; //MySQL password
 			
@@ -61,18 +77,20 @@ public class CandidateLoginServlet extends HttpServlet {
 	 			if(rs.getString("password").equals(userpassword)) 
 				{
 	 				ses.setAttribute("userid", userid);
-	 				RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
-	 				rd.forward(request, response);
+	 				//RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
+	 				//rd.forward(request, response);
+	 				response.setContentType("text/html");
+	 	 			PrintWriter out = response.getWriter();
+	 	 		      out.println(
+						 "0"
+	 	 		      );
 	 			}
 	 			else 
 				{
 	 				response.setContentType("text/html");
 	 	 			PrintWriter out = response.getWriter();
-	 	 		      String docType =
-	 	 		         "<!doctype html>\n";
-	 	 		      out.println(docType +
-	 	 		         "<html><head><title>Error </title></head>"+
-						 "<body><h1>Incorrect Password</h1></body></html>"
+	 	 		      out.println(
+						 "<h6>Incorrect Password</h6>"
 	 	 		      );
 	
 	 			}
@@ -80,15 +98,12 @@ public class CandidateLoginServlet extends HttpServlet {
 	 		}
 	 		else 
 			{
-	// 			RequestDispatcher rd = request.getRequestDispatcher("CandidateLogin.jsp");
-	//			rd.forward(request, response);
+	 			//RequestDispatcher rd = request.getRequestDispatcher("CandidateLogin.jsp");
+				//rd.forward(request, response);
 	 			response.setContentType("text/html");
 	 			PrintWriter out = response.getWriter();
-	 		      String docType =
-	 		         "<!doctype html>\n";
-	 		      out.println(docType +
-	 		         "<html><head><title>Error </title></head>"+
-					 "<body><h1>Login Failed - Invalid User</h1></body></html>"
+	 		      out.println(
+					 "Login Failed - Invalid User"
 	 		      );
 	 		}
 		

@@ -1,22 +1,22 @@
-import {isRecruiter} from './home.js';
+//document.getElementById('signup').addEventListener('click', SignUpForm);
+//document.getElementById('login').addEventListener('click', LoginForm);
 
-document.getElementById('signup').addEventListener('click', SignUpForm);
-document.getElementById('login').addEventListener('click', LoginForm);
+var out = 0;
 
-function LoginForm() {
-	var word;
-	if(isRecruiter) {
-		word=`Recruiter`;
+function LoginForm(n) {
+	var word="!";
+	out=n;
+	if(n==1) {
+		word="Recruiter";
 	} else {
-		word=`Candidate`;
+		word="Candidate";
 	}
-	console.log("LoginForm");
-	var first = `<div id="head">
+	console.log(word.concat("LoginForm"));
+	var myForm = `<div id="head">
 			<span id="login">Login</span> <span id="signup">Sign Up</span>
 			</div>
 			<div id="displayForm">
-				<form action="`;
-	var last = `LoginServlet" method="post" id="LoginForm">
+				<form action="#" method="post" id="LoginForm">
 		<div class="form-element">
 			<span>Email:</span><br>
 			<input type="text" name="username">
@@ -26,23 +26,22 @@ function LoginForm() {
 			<input type="password" name="password">
 		</div>
 		<div class="form-element">
-			<input type="submit" value="Login">
+			<input type="submit" value="Login" name="submit">
 		</div>
 		</form>
 		</div>`;
-	let myForm = first.concat(word, last);
 	document.getElementById("content").innerHTML=myForm;
 	document.getElementById("signup").addEventListener("click", SignUpForm);
 }
 
-function SignUpForm() {
-	var word;
-	if(isRecruiter) {
-		word=`Recruiter`;
+function SignUpForm(n) {
+	var word = "!";
+	if(n==1) {
+		word="Recruiter";
 	} else {
-		word=`Candidate`;
+		word="Candidate";
 	}
-	console.log("SignUpForm");
+	console.log(word.concat("SignUpForm"));
 	var first = `<div id="head">
 			<span id="login">Login</span> <span id="signup">Sign Up</span>
 			</div>
@@ -70,4 +69,4 @@ function SignUpForm() {
 	document.getElementById("login").addEventListener("click", LoginForm);
 }
 
-export {LoginForm};
+

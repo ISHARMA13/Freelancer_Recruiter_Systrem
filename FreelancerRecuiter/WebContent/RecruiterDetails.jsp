@@ -37,9 +37,10 @@ border-bottom: 1px solid black;
 </style>
 </head>
 <body>
+
 <h1>Fill out personal details</h1>
 
-<form action="CandidateDetailsServlet" method="post">
+<form action="CandidateDetailsServlet" method="post" id="DetailsForm">
 	<label for="firstname">First Name:</label>
 	<input type="text" name="firstname" id="firstname" required> <br>
 	
@@ -56,6 +57,12 @@ border-bottom: 1px solid black;
 	  <option value="O">Choose not to answer</option> 
 	</select> <br>
 	
+	<label for="company">Company:</label>
+	<input type="text" name="company" id="company"> <br>
+	
+	<label for="position">Position:</label>
+	<input type="text" name="position" id="position"> <br>
+	
 	<label for="workphone">Work Phone:</label>
 	<input type="tel" name="workphone" id="workphone" required> <br>
 	
@@ -71,83 +78,25 @@ border-bottom: 1px solid black;
 	<label for="pin">PINCODE:</label>
 	<input type="number" name="pin" id="pin" required oninput=""> <br>
 	
-	<hr size=3>
-	
-	<h1>Education details</h1>
-	<div id="edu">
-	<div class="inneredu">
-	<label for="university">Institute:</label>
-	<input type="text" name="university" id="university" required> <br>
-	
-	<label for="degree">Degree:</label>
-	<input type="text" name="degree" id="degree"> <br>
-	
-	<label for="start">Start Date:</label>
-	<input type="date" name="start" id="start" required> <br>
-	
-	<label for="end">End date (expected):</label>
-	<input type="date" name="end" id="end" required oninput="checkDateValidity"> <br>
-	</div>
-	</div>
-	<div id="edu1"></div>
-	<div id="edu2"></div>
-	<div style="display:flex">
-	<button  id="eduadd">+ Add</button> 
-	<button  id="edudel" style="display:none;">- Sub</button>
-	</div>
-	
-	
-	<hr size=3>
-	
-	<h1>Experience details</h1>
-	<div id="exp">
-	<div class="innerexp">
-	<label for="company">Company:</label>
-	<input type="text" name="company" id="company" required> <br>
-	
-	<label for="title">Title:</label>
-	<input type="text" name="title" id="title"> <br>
-	
-	<label for="Xstart">Start Date:</label>
-	<input type="date" name="Xstart" id="Xstart" required> <br>
-	
-	<label for="Xend">End date (expected):</label>
-	<input type="date" name="Xend" id="Xend" required> <br>
-	
-	<label for="description">Description:</label> <br>
-	<textarea id="description" name="description" rows="7" cols="50"></textarea> <br>
-	</div>
-	</div>
-	<div id="exp1"></div>
-	<div id="exp2"></div>
-	<div style="display:flex">
-	<button  id="expadd">+ Add</button> 
-	<button  id="expdel" style="display:none;">- Sub</button>
-	</div>
-	
-	<hr size=3>
-	
-	<input type="submit" value="Submit">
+	<input type="submit" value="Submit" name="submit">
 	
 </form>
-<script src="javascript/educationAdd.js"></script>
-<script src="javascript/experienceAdd.js"></script>
 <script>
-console.log("CandidateDetails.jsp");
+console.log("RecruiterDetails.jsp");
 
 const form = document.getElementById("DetailsForm");
 form.addEventListener("submit", (e) => {
  	e.preventDefault();
 	const data = $('form').serialize();
 	axios
-	  .post("CandidateDetailsServlet",data , {
+	  .post("RecruiterDetailsServlet",data , {
 	    headers: {
 	      "Content-Type": "application/x-www-form-urlencoded"
 	    },
 	  })
 	  .then((res) => {
 		if(res.data=="0"){
-			window.location="CandidateDashboard.jsp";
+			window.location="RecruiterDashboard.jsp";
 		}
 		else{
 		document.getElementById("err").innerHTML=res.data;

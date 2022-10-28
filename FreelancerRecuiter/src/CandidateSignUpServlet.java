@@ -54,7 +54,7 @@ public class CandidateSignUpServlet extends HttpServlet {
 			
 			//Getting a connection object
 			Connection con = null;
-	 		String url = "jdbc:mysql://localhost:3306/trial"; //MySQL URL and followed by the database name
+	 		String url = "jdbc:mysql://localhost:3306/ishifree"; //MySQL URL and followed by the database name
 	 		String username = "ishifree"; //MySQL username
 	 		String pass = "Freelancer@9876"; //MySQL password
 			
@@ -75,8 +75,9 @@ public class CandidateSignUpServlet extends HttpServlet {
 		 			stmt.setString(2, password);
 		 			int r=stmt.executeUpdate();
 		 			if(r > 0) {
-			 			RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
-		 				rd.forward(request, response);
+			 			//RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
+		 				//rd.red(request, response);
+		 				response.sendRedirect("CandidateDetails.jsp");
 		 			}
 		 		} 
 		 		else {
@@ -88,6 +89,9 @@ public class CandidateSignUpServlet extends HttpServlet {
 	 	 		         "<html><head><title>Error</title></head>"+
 						 "<body><h1>Incorrect Password</h1></body></html>"
 	 	 		      );
+	 	 		  RequestDispatcher rd = request.getRequestDispatcher("CandidateLogin.jsp");
+		 				rd.include(request, response);
+	 	 		      
 		 		}
 	 		} else {
 	 			response.setContentType("text/html");
