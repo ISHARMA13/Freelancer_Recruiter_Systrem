@@ -71,7 +71,7 @@
                     <a class="nav-link active" href="SearchAJob.jsp">Jobs</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="Applications.jsp">My Applications</a>
+                    <a class="nav-link" href="MyApplications.jsp">My Applications</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="SearchAJob.jsp">Refresh <i class="fa fa-refresh"></i></a>

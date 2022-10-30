@@ -13,7 +13,7 @@ amount int default 0 check (amount>=0),
 foreign key(Id) references freelancers(Id)
 );
 
-create table  if not exists  empdetails (Id varchar(20) primary key,
+create table  if not exists  freedetails (Id varchar(20) primary key,
 first_name varchar(30) not null,
 last_name varchar(30) not null,
 photo mediumblob,
