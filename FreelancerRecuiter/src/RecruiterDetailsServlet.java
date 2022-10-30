@@ -1,10 +1,12 @@
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import javax.servlet.annotation.MultipartConfig;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,11 +15,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  * Servlet implementation class RecruiterDetailsServlet
  */
 @WebServlet("/RecruiterDetailsServlet")
+@MultipartConfig(maxFileSize = 16177215)
 public class RecruiterDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,12 +40,21 @@ public class RecruiterDetailsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			HttpSession ses = request.getSession( );
-			String Id = (String) ses.getAttribute("userid");
+			String Id = ses.getAttribute("email").toString();
+			
+			//Getting a connection object
+			Connection con = null;
+	 		String url = "jdbc:mysql://localhost:3306/ishifree"; //MySQL URL and followed by the database name
+	 		String username = "ishifree"; //MySQL username
+	 		String password = "Freelancer@9876"; //MySQL password
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(url, username, password); //attempting to connect to MySQL database
+	 		System.out.println("Printing connection object "+con);
 			
 			//Personal details
 			String firstname = request.getParameter("firstname");
 			String lastname = request.getParameter("lastname");
-			String photoURL = request.getParameter("photo");
 			String gender = request.getParameter("gender");
 			String company = request.getParameter("company");
 			String position = request.getParameter("position");
@@ -51,28 +64,25 @@ public class RecruiterDetailsServlet extends HttpServlet {
 			String state = request.getParameter("state");
 			int pincode = Integer.parseInt(request.getParameter("pin"));
 			
-			//Getting a connection object
-			Connection con = null;
-	 		String url = "jdbc:mysql://localhost:3306/trial"; //MySQL URL and followed by the database name
-	 		String username = "ishifree"; //MySQL username
-	 		String password = "Freelancer@9876"; //MySQL password
+			InputStream photoURL = null;
+	        Part filePart = request.getPart("photo");
+	        if (filePart != null) {
+	            System.out.println(filePart.getName());
+	            System.out.println(filePart.getSize());
+	            System.out.println(filePart.getContentType());
+	            // Obtains input stream of the upload file
+	            photoURL = filePart.getInputStream();
+	        }
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(url, username, password); //attempting to connect to MySQL database
-	 		System.out.println("Printing connection object "+con);
-	 		
-	 		
-	 		//All queries:	
-	 		String empdetails = "insert into empdetails values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
-	 		String empwallet = "insert into empwallet(?,0)";
-	 		
-	 		//Setting values in queries:
-	 		//Query1
+	        String empdetails = "insert into empdetails values (?,?,?,?,?,?,?,?,?,?,?,?);";
 	 		PreparedStatement query = con.prepareStatement(empdetails);
 	 		query.setString(1, Id);
 	 		query.setString(2, firstname);
 	 		query.setString(3, lastname);
-	 		query.setString(4, photoURL);
+//	 		query1.setString(4, photoURL);
+	 		if (photoURL != null) {
+	 			query.setBlob(4,photoURL);
+            }
 	 		query.setString(5, gender);
 	 		query.setString(6, company);
 	 		query.setString(7, position);
@@ -81,13 +91,12 @@ public class RecruiterDetailsServlet extends HttpServlet {
 	 		query.setString(10, city);
 	 		query.setString(11, state);
 	 		query.setInt(12, pincode);
+	 		int Edet=query.executeUpdate();
 	 		
-	 		//Query2
+	 		//Wallet details
+	 		String empwallet = "insert into empwallet values(?,0)";
 	 		PreparedStatement query2 = con.prepareStatement(empwallet);
 	 		query2.setString(1, Id);
-	 		
-	 		//Executing Queries:
-	 		int Edet=query.executeUpdate();
 	 		int Ewall=query2.executeUpdate();
 	 		
 	 		if(Edet>0 && Ewall>0) {
@@ -98,6 +107,7 @@ public class RecruiterDetailsServlet extends HttpServlet {
  	 		      out.println(
 					 "0"
  	 		      );
+ 	 		    response.sendRedirect("RecruiterDashboard.jsp");
 	 		} else {
 	 			response.setContentType("text/html");
  	 			PrintWriter out = response.getWriter();
@@ -108,6 +118,10 @@ public class RecruiterDetailsServlet extends HttpServlet {
 		} 
 		catch (Exception e) {
  			e.printStackTrace();
+ 			PrintWriter out = response.getWriter();
+		      out.println(
+		    		 e.toString()
+		      );
  		}
 	}
 

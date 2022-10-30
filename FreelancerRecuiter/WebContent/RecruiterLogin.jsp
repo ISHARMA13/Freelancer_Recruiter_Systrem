@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Company Login</title>
-<link rel="stylesheet" href="css/home.css">
+<title>Recruiter Login Form</title>
+<link rel="icon" href="images/logo.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/home.css">
+<script src="http://code.jquery.com/jquery-git2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="javascript/Forms.js"></script>
 </head>
 <body>
@@ -21,10 +24,10 @@
 	<span id="login" onclick="LoginForm(1)">Login</span> <span id="signup" onclick="SignUpForm(1)">Sign Up</span>
 	</div>
 	<div id="displayForm">
-		<form action="#" method="post" id="LoginForm">
+		<form action="#" method="post" id="LoginForm" name="LoginForm">
 			<div class="form-element">
 				<label for="emailid">Email:</label><br>
-				<input type="text" name="username" id="emailid">
+				<input type="email" name="username" id="emailid">
 			</div>
 			<div class="form-element">
 				<label for="pass">Password:</label><br>
@@ -34,6 +37,7 @@
 				<input type="submit" value="Login" name="submit">
 			</div>
 		</form>
+	<label id="err" style="font-size:1rem;color:red;"></label>	
 	</div>
 </div>
 </section>

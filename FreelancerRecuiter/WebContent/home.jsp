@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Home</title>
 <link rel="stylesheet" href="css/home.css">
+<script src="http://code.jquery.com/jquery-git2.js"></script>
 <style>
 	#jobseeker, #recruiter {
 		border: 1px solid;

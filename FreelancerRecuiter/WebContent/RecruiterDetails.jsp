@@ -4,7 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-git2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <title>Details Form</title>
+<link rel="icon" href="images/logo.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 form{
 padding:1rem;
@@ -28,19 +32,16 @@ padding:0.5rem;
 margin:0.5rem;
 width:7rem;
 }
-.inneredu{
-border-bottom: 1px solid black;
-}
-.innerexp{
-border-bottom: 1px solid black;
-}
 </style>
 </head>
 <body>
 
 <h1>Fill out personal details</h1>
 
-<form action="CandidateDetailsServlet" method="post" id="DetailsForm">
+<form action="RecruiterDetailsServlet" enctype="multipart/form-data"  method="post" id="DetailsForm">
+	<label for="email">Email:</label>
+	<input type="email" value="<%=(String) request.getSession(false).getAttribute("email") %>" id="email"> <br>
+	
 	<label for="firstname">First Name:</label>
 	<input type="text" name="firstname" id="firstname" required> <br>
 	
@@ -64,7 +65,7 @@ border-bottom: 1px solid black;
 	<input type="text" name="position" id="position"> <br>
 	
 	<label for="workphone">Work Phone:</label>
-	<input type="tel" name="workphone" id="workphone" required> <br>
+	<input type="number" name="workphone" id="workphone" required min="1000000000" max="9999999999"> <br>
 	
 	<label for="street">Street:</label>
 	<input type="text" name="street" id="street"> <br>
@@ -76,37 +77,14 @@ border-bottom: 1px solid black;
 	<input type="text" name="state" id="state" required> <br>
 	
 	<label for="pin">PINCODE:</label>
-	<input type="number" name="pin" id="pin" required oninput=""> <br>
+	<input type="number" name="pin" id="pin" required min="100000" max="999999"> <br>
 	
 	<input type="submit" value="Submit" name="submit">
+	<label  id="err" ></label>
 	
 </form>
 <script>
 console.log("RecruiterDetails.jsp");
-
-const form = document.getElementById("DetailsForm");
-form.addEventListener("submit", (e) => {
- 	e.preventDefault();
-	const data = $('form').serialize();
-	axios
-	  .post("RecruiterDetailsServlet",data , {
-	    headers: {
-	      "Content-Type": "application/x-www-form-urlencoded"
-	    },
-	  })
-	  .then((res) => {
-		if(res.data=="0"){
-			window.location="RecruiterDashboard.jsp";
-		}
-		else{
-		document.getElementById("err").innerHTML=res.data;
-		}
-		console.log(res);
-	  })
-	  .catch((err) => {
-	    console.log(err);
-	  });
-});
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Candidate Login Form</title>
+<link rel="icon" href="images/logo.ico" type="image/x-icon" />
 <link rel="stylesheet" href="css/home.css">
 <script src="http://code.jquery.com/jquery-git2.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

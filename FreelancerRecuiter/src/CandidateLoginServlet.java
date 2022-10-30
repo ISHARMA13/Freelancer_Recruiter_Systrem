@@ -41,23 +41,23 @@ public class CandidateLoginServlet extends HttpServlet {
 		try
 		{
 			//Setting a session variable
-			HttpSession ses = request.getSession();  
+			HttpSession ses = request.getSession(true);  
 			
 			//getting input values from jsp page
 			String userid = request.getParameter("username");
-		
 			String userpassword = request.getParameter("password");
-			System.out.println(userid);
-			System.out.println(userpassword);
 			
-			StringBuffer jb = new StringBuffer();
-			  String line = null;
-			  try {
-			    BufferedReader reader = request.getReader();
-			    while ((line = reader.readLine()) != null)
-			      jb.append(line);
-			  } catch (Exception e) { /*report an error*/ }
-			  System.out.println(jb);
+//			System.out.println(userid);
+//			System.out.println(userpassword);
+			
+//			StringBuffer jb = new StringBuffer();
+//			  String line = null;
+//			  try {
+//			    BufferedReader reader = request.getReader();
+//			    while ((line = reader.readLine()) != null)
+//			      jb.append(line);
+//			  } catch (Exception e) { /*report an error*/ }
+//			  System.out.println(jb);
 			
 			//Getting a connection object
 			 
@@ -77,13 +77,13 @@ public class CandidateLoginServlet extends HttpServlet {
 	 			if(rs.getString("password").equals(userpassword)) 
 				{
 	 				ses.setAttribute("userid", userid);
-	 				//RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
-	 				//rd.forward(request, response);
 	 				response.setContentType("text/html");
 	 	 			PrintWriter out = response.getWriter();
 	 	 		      out.println(
 						 "0"
 	 	 		      );
+//	 	 		    RequestDispatcher rd = request.getRequestDispatcher("CandidateDetails.jsp");
+//	 				rd.forward(request, response);
 	 			}
 	 			else 
 				{

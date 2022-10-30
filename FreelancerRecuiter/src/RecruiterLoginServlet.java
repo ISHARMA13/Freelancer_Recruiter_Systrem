@@ -38,7 +38,7 @@ public class RecruiterLoginServlet extends HttpServlet {
 		try
 		{
 			//Setting a session variable
-			HttpSession ses = request.getSession();  
+			HttpSession ses = request.getSession(true);  
 	
 			//getting input values from jsp page
 			String userid = request.getParameter("username");
@@ -60,19 +60,21 @@ public class RecruiterLoginServlet extends HttpServlet {
 			{
 	 			if(rs.getString("password").equals(userpassword)) 
 				{
-	 				ses.setAttribute("userid", userid);
-	 				RequestDispatcher rd = request.getRequestDispatcher("RecruiterDetails.jsp");
-	 				rd.forward(request, response);
+	 				ses.setAttribute("email", userid);
+	 				response.setContentType("text/html");
+	 	 			PrintWriter out = response.getWriter();
+	 	 		      out.println(
+						 "0"
+	 	 		      );
+//	 				RequestDispatcher rd = request.getRequestDispatcher("RecruiterDetails.jsp");
+//	 				rd.forward(request, response);
 	 			}
 	 			else 
 				{
 	 				response.setContentType("text/html");
 	 	 			PrintWriter out = response.getWriter();
-	 	 		      String docType =
-	 	 		         "<!doctype html>\n";
-	 	 		      out.println(docType +
-	 	 		         "<html><head><title>Error </title></head>"+
-						 "<body><h1>Incorrect Password</h1></body></html>"
+	 	 		      out.println(
+						 "<h6>Incorrect Password</h6>"
 	 	 		      );
 	
 	 			}
@@ -84,11 +86,8 @@ public class RecruiterLoginServlet extends HttpServlet {
 	//			rd.forward(request, response);
 	 			response.setContentType("text/html");
 	 			PrintWriter out = response.getWriter();
-	 		      String docType =
-	 		         "<!doctype html>\n";
-	 		      out.println(docType +
-	 		         "<html><head><title>Error </title></head>"+
-					 "<body><h1>Login Failed - Invalid User</h1></body></html>"
+	 		      out.println(
+					 "Login Failed - Invalid User"
 	 		      );
 	 		}
 		

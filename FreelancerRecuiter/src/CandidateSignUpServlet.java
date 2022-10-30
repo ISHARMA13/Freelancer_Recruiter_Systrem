@@ -31,14 +31,6 @@ public class CandidateSignUpServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,7 +60,7 @@ public class CandidateSignUpServlet extends HttpServlet {
 	 		
 	 		if(!rs.next()) {
 		 		if (confirmPassword.equals(password)) {
-		 			ses.setAttribute("email", email);
+		 			ses.setAttribute("userid", email);
 		 			String query = "INSERT INTO freelancers values (?,?)";
 		 			PreparedStatement stmt = con.prepareStatement(query);
 		 			stmt.setString(1, email);
@@ -89,7 +81,7 @@ public class CandidateSignUpServlet extends HttpServlet {
 	 	 		         "<html><head><title>Error</title></head>"+
 						 "<body><h1>Incorrect Password</h1></body></html>"
 	 	 		      );
-	 	 		  RequestDispatcher rd = request.getRequestDispatcher("CandidateLogin.jsp");
+	 	 		      	RequestDispatcher rd = request.getRequestDispatcher("CandidateLogin.jsp");
 		 				rd.include(request, response);
 	 	 		      
 		 		}

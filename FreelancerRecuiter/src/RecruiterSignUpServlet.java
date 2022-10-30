@@ -61,14 +61,15 @@ public class RecruiterSignUpServlet extends HttpServlet {
 	 		if(!rs.next()) {
 		 		if (confirmPassword.equals(password)) {
 		 			ses.setAttribute("email", email);
-		 			String query = "INSERT INTO employer (?,?)";
+		 			String query = "INSERT INTO employer values (?,?)";
 		 			PreparedStatement stmt = con.prepareStatement(query);
 		 			stmt.setString(1, email);
 		 			stmt.setString(2, password);
 		 			int r=stmt.executeUpdate();
 		 			if(r > 0) {
-			 			RequestDispatcher rd = request.getRequestDispatcher("RecruiterDetails.jsp");
-		 				rd.forward(request, response);
+//			 			RequestDispatcher rd = request.getRequestDispatcher("RecruiterDetails.jsp");
+//		 				rd.forward(request, response);
+		 				response.sendRedirect("RecruiterDetails.jsp");
 		 			}
 		 		} 
 		 		else {
@@ -80,6 +81,8 @@ public class RecruiterSignUpServlet extends HttpServlet {
 	 	 		         "<html><head><title>Error</title></head>"+
 						 "<body><h1>Incorrect Password</h1></body></html>"
 	 	 		      );
+	 	 		      	RequestDispatcher rd = request.getRequestDispatcher("RecruiterLogin.jsp");
+		 				rd.include(request, response);
 		 		}
 	 		} else {
 	 			response.setContentType("text/html");

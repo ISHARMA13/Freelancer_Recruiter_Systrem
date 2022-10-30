@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Details Form</title>
+<link rel="icon" href="images/logo.ico" type="image/x-icon" />
+<script src="http://code.jquery.com/jquery-git2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 form{
 padding:1rem;
@@ -38,8 +45,10 @@ border-bottom: 1px solid black;
 </head>
 <body>
 <h1>Fill out personal details</h1>
-
-<form action="CandidateDetailsServlet" method="post">
+<form action="CandidateDetailsServlet" enctype="multipart/form-data" method="post" id="DetailsForm">
+	<label for="userid">Email:</label>
+	<input type="email" value="<%=(String) request.getSession(false).getAttribute("userid") %>" id="userid"> <br>
+	
 	<label for="firstname">First Name:</label>
 	<input type="text" name="firstname" id="firstname" required> <br>
 	
@@ -57,7 +66,7 @@ border-bottom: 1px solid black;
 	</select> <br>
 	
 	<label for="workphone">Work Phone:</label>
-	<input type="tel" name="workphone" id="workphone" required> <br>
+	<input type="number" name="workphone" id="workphone" required min="1000000000" max="9999999999"> <br>
 	
 	<label for="street">Street:</label>
 	<input type="text" name="street" id="street"> <br>
@@ -69,7 +78,7 @@ border-bottom: 1px solid black;
 	<input type="text" name="state" id="state" required> <br>
 	
 	<label for="pin">PINCODE:</label>
-	<input type="number" name="pin" id="pin" required oninput=""> <br>
+	<input type="number" name="pin" id="pin" required min="100000" max="999999"> <br>
 	
 	<hr size=3>
 	
@@ -86,7 +95,7 @@ border-bottom: 1px solid black;
 	<input type="date" name="start" id="start" required> <br>
 	
 	<label for="end">End date (expected):</label>
-	<input type="date" name="end" id="end" required oninput="checkDateValidity"> <br>
+	<input type="date" name="end" id="end" required> <br>
 	</div>
 	</div>
 	<div id="edu1"></div>
@@ -128,36 +137,13 @@ border-bottom: 1px solid black;
 	<hr size=3>
 	
 	<input type="submit" value="Submit">
+	<label  id="err" ></label>
 	
 </form>
 <script src="javascript/educationAdd.js"></script>
 <script src="javascript/experienceAdd.js"></script>
 <script>
 console.log("CandidateDetails.jsp");
-
-const form = document.getElementById("DetailsForm");
-form.addEventListener("submit", (e) => {
- 	e.preventDefault();
-	const data = $('form').serialize();
-	axios
-	  .post("CandidateDetailsServlet",data , {
-	    headers: {
-	      "Content-Type": "application/x-www-form-urlencoded"
-	    },
-	  })
-	  .then((res) => {
-		if(res.data=="0"){
-			window.location="CandidateDashboard.jsp";
-		}
-		else{
-		document.getElementById("err").innerHTML=res.data;
-		}
-		console.log(res);
-	  })
-	  .catch((err) => {
-	    console.log(err);
-	  });
-});
 </script>
 </body>
 </html>
