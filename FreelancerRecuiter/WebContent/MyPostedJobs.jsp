@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Applications</title>
+<title>Proposals</title>
 <link rel="icon" href="images/logo.ico" type="image/x-icon" />
 <script src="http://code.jquery.com/jquery-git2.js"></script>
    <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,7 +40,7 @@ try{
 	ResultSet details = stmt.executeQuery();
 %>
 	<div class="p-5 bg-primary text-white text-center" style="margin-top: 60px">
-        <h1>Find all your Applications here!</h1>
+        <h1>Find all your Applicants here!</h1>
         <p>Hope you find a perfect match!</p>
     </div>
 
