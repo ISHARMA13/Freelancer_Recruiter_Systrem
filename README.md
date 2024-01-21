@@ -39,6 +39,8 @@ git clone [repository_url]
 - J2EE
 - Eclipse IDE
 - MySQL
+- Bootstrap
+- JavaScript
 
 ## Contributors
 - ISHIKA SHARMA
